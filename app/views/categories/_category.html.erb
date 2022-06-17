@@ -1,0 +1,19 @@
+<div id="<%= dom_id category %>">
+
+
+<div class="container">
+  <div class="row py-3">
+    <div class="col-ms-4">
+      <div class="card" style="width: 18rem;">
+          <% if category.avatar.attached?%>
+          <%= image_tag category.avatar, width: "286px" %>
+          <%end%>
+          <div class="card-body">
+              <h5 class="card-title"><%= category.category %></h5>
+              <%= link_to "products", products_path(:category_id =>category.id) ,class: "btn btn-primary"%>
+          </div>
+         </div>
+       </div>
+     </div>
+   </div>
+</div>

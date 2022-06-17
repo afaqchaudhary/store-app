@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+<%= link_to "Back to categories", categories_path, class:"btn btn-primary" %>
+
+<% if current_user.role=="admin"%>
+<%= link_to "Add product", new_product_path ,class: "btn btn-warning"%>
+<%end%>
+
+
+<div class="container">
+  <div class="row py-3">
+    <% @products.each do |product| %>
+    <div class="col-md-4 py-3">
+      <div class="card" >
+        <% if product.avatar.attached?%>
+        <%= image_tag product.avatar, width: "355px" %>
+        <%end%>
+        <div class="card-body">
+            <h5 class="card-title"><%= product.name%></h5>
+            <%= product.description%>
+            <h5 class="card-title">Price:<%= product.price %></h5>
+            <%= link_to "Show this product", product, class:"btn btn-primary" %>
+            <%= link_to "Add to Cart", add_to_cart_path(product.id), 'data-turbo-method': :post, class: "btn btn-primary" %>
+        </div>
+      </div>
+     </div>
+    <%end%>
+  </div>
+</div>

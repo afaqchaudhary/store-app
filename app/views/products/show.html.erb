@@ -1,0 +1,25 @@
+
+<p style="color: green"><%= notice %></p>
+<div class="container">
+  <div class="row py-3">
+     <div class="col-md-4 py-3">
+        <div class="card" >
+                <% if @product.avatar.attached?%>
+                <%= image_tag @product.avatar, width: "355px" %>
+                <%end%>
+           <div class="card-body">
+                      <h5 class="card-title"><%= @product.name%></h5>
+                      <%= @product.description%>
+                      <h5 class="card-title">Price:<%= @product.price %></h5>
+
+          </div>
+        </div>
+    </div>
+  </div>
+</div>
+
+  </br>
+<% if current_user.role=="admin"%>
+  <%= link_to "Edit this product", edit_product_path(@product) %>
+  <%= button_to "Destroy this product", @product, method: :delete %>
+  <%end%>

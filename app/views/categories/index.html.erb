@@ -1,0 +1,38 @@
+<p style="color: green"><%= notice %></p>
+
+<p><% if current_user%></P>
+  <%=current_user.email%>
+<P><% if current_user.role=="admin"%></P>
+
+  <%= link_to "Add category", new_category_path, class: "btn btn-warning" %>
+
+  <%end%>
+
+<div id="categories">
+  <div class="container">
+     <div class="row py-3">
+       <% @categories.each do |category| %>
+        <div class="col-md-4">
+          <div class="card" style="width: 18rem;">
+                  <% if category.avatar.attached?%>
+                  <%= image_tag category.avatar %>
+                  <%end%>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= category.category %></h5>
+                    <%= link_to "products", products_path(:category_id =>category.id) ,class: "btn btn-primary"%>
+                    <% if current_user.role=="admin"%>
+                    <%= link_to "show Category", category ,class: "btn btn-primary"%>
+                    <%end%>
+                 </div>
+           </div>
+         </div>
+       <% end %>
+     </div>
+  </div>
+</div>
+
+<% else %>
+<p> you are not signIn </p>
+<%= link_to "Sign UP", new_user_registration_path%>
+<%= link_to "login", new_user_session_path %>
+<%end%>

@@ -1,0 +1,30 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Cart Products</h1>
+
+<div id="carts">
+  <div class="container">
+     <div class="row py-3">
+      <% @carts.each do |cart| %>
+      <div class="col-md-4 py-3">
+         <div class="card" style="width: 18rem";>
+            <% @product = Product.find(cart.product_id) %>
+            <% if @product.avatar.attached?%>
+            <%= image_tag @product.avatar %>
+            <%end%>
+             <div class="card-body">
+                  <h5 class="card-title"><%= @product.name%></h5>
+                  <h5 class="card-title">Price:<%= cart.price %></h5>
+
+                   <%= link_to "Buy", new_cart_path , class: "btn btn-primary" %>
+                   <%= link_to "Remove cart", @cart, method: :delete, class: "btn btn-primary" %>
+
+            </div>
+         </div>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
+</div>
+<%= link_to "New cart", new_cart_path %>
